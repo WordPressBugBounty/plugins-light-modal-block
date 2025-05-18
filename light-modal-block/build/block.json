@@ -1,0 +1,104 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cloudcatch/light-modal-block",
+  "version": "1.6.0",
+  "title": "Light Modal Block",
+  "category": "widgets",
+  "description": "Lightweight, customizable modal block for the WordPress block editor",
+  "attributes": {
+    "id": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "backdropColor": {
+      "type": "string"
+    },
+    "enableCloseButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "closeIconColor": {
+      "type": "string"
+    },
+    "closeBackgroundColor": {
+      "type": "string"
+    },
+    "triggerType": {
+      "type": "string",
+      "default": "click"
+    },
+    "enableTriggerDelay": {
+      "type": "boolean",
+      "default": false
+    },
+    "triggerDelay": {
+      "type": "string"
+    },
+    "triggerSelector": {
+      "type": "string"
+    },
+    "cookieDuration": {
+      "type": "string"
+    },
+    "interactionSetsCookie": {
+      "type": "boolean"
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "html": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true,
+      "link": false,
+      "__experimentalDefaultControls": {
+        "background": true,
+        "text": true
+      }
+    },
+    "spacing": {
+      "blockGap": false,
+      "margin": false,
+      "padding": true,
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "shadow": true
+  },
+  "textdomain": "light-modal-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
