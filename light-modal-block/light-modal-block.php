@@ -4,7 +4,7 @@
  * Description:       Lightweight, customizable modal block for the WordPress block editor
  * Requires at least: 6.6
  * Requires PHP:      7.0
- * Version:           1.6.0
+ * Version:           1.7.0
  * Author:            CloudCatch LLC
  * Author URI:        https://cloudcatch.io
  * License:           GPL-2.0-or-later
@@ -77,3 +77,27 @@ function cloudcatch_light_modal_block_post_template( $block_content, $block, $in
 	return $block_content;
 }
 add_filter( 'render_block_core/post-template', 'cloudcatch_light_modal_block_post_template', 10, 3 );
+
+/**
+ * Accessibility improvements for buttons that trigger modals by changing
+ * the element from an anchor tag to a button tag.
+ *
+ * @param string $block_content The block content.
+ * @return string
+ */
+function cloudcatch_light_modal_block_accessible_buttons( $block_content ) {
+	$tags = new WP_HTML_Tag_Processor( $block_content );
+
+	$has_modal = (bool) ( $tags->next_tag() && $tags->get_attribute( 'data-trigger-modal' ) );
+
+	if ( ! $has_modal ) {
+		return $block_content;
+	}
+
+	// Replace <a> with <button> if it has a modal trigger.
+	$block_content = str_replace( '<a ', '<button ', $block_content );
+	$block_content = str_replace( '</a>', '</button>', $block_content );
+
+	return $block_content;
+}
+add_filter( 'render_block_core/button', 'cloudcatch_light_modal_block_accessible_buttons' );
