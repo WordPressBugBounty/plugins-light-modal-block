@@ -4,7 +4,7 @@
  * Description:       Lightweight, customizable modal block for the WordPress block editor
  * Requires at least: 6.6
  * Requires PHP:      7.0
- * Version:           1.7.0
+ * Version:           1.7.1
  * Author:            CloudCatch LLC
  * Author URI:        https://cloudcatch.io
  * License:           GPL-2.0-or-later

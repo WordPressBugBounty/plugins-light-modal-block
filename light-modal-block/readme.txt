@@ -2,7 +2,7 @@
 Contributors:      cloudcatch, dkjensen
 Tags:              block, modal, popup, lightbox, gutenberg, full-site-editing
 Tested up to:      6.8
-Stable tag:        1.7.0
+Stable tag:        1.7.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP:      7.0
@@ -35,6 +35,9 @@ A simple yet robust solution for creating modals within the WordPress block edit
 The Light Modal block uses a modified version of the [Micromodal](https://github.com/Ghosh/micromodal) library.
 
 == Changelog ==
+
+= 1.7.1 =
+* Fix: Unnecessary block editor scripts being enqueued on frontend
 
 = 1.7.0 =
 
