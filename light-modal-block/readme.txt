@@ -2,7 +2,7 @@
 Contributors:      cloudcatch, dkjensen
 Tags:              block, modal, popup, lightbox, gutenberg, full-site-editing
 Tested up to:      7.0
-Stable tag:        1.9.1
+Stable tag:        1.9.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP:      7.0
@@ -36,10 +36,13 @@ The Light Modal block uses a modified version of the [Micromodal](https://github
 
 == Changelog ==
 
-= 1.9.1 =
+= 1.9.2 =
+* Fix: Prevent page scrolling when clicking an anchor which triggers opening a modal
+
+= 1.9.2 =
 * Fix: Modal not opening on some sites due to the script loading after the page was already ready
 
-= 1.9.1 =
+= 1.9.0 =
 * Enhancement: When selecting edit modal from the plugin sidebar, automatically open the modal block settings
 * Enhancement: Improve performance of `useModals()` hook via leveraging `getBlocksByName()`
 
@@ -154,6 +157,58 @@ The class `lmb-open` is added to the `<body>` of the page when a modal is open. 
 
 	.lmb-open {
 		overflow: hidden;
+	}
+
+= How can I animate the modal opening and closing? =
+
+Add the following CSS to your child theme to fade the modal in and out:
+
+	.wp-block-cloudcatch-light-modal-block__wrapper {
+		opacity: 0;
+		transition: opacity 0.3s ease, display 0.3s allow-discrete;
+	}
+
+	.wp-block-cloudcatch-light-modal-block__wrapper.is-open {
+		opacity: 1;
+	}
+
+	@starting-style {
+		.wp-block-cloudcatch-light-modal-block__wrapper.is-open {
+			opacity: 0;
+		}
+	}
+
+Or, for a livelier effect, use this CSS to make the modal pop in with a springy slide and scale:
+
+	.wp-block-cloudcatch-light-modal-block__wrapper {
+		opacity: 0;
+		transition: opacity 0.3s ease, display 0.3s allow-discrete;
+	}
+
+	.wp-block-cloudcatch-light-modal-block__wrapper.is-open {
+		opacity: 1;
+	}
+
+	.wp-block-cloudcatch-light-modal-block__wrapper .wp-block-cloudcatch-light-modal-block {
+		opacity: 0;
+		transform: translateY(40px) scale(0.9);
+		transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+	}
+
+	.wp-block-cloudcatch-light-modal-block__wrapper.is-open .wp-block-cloudcatch-light-modal-block {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+
+	@starting-style {
+		.wp-block-cloudcatch-light-modal-block__wrapper.is-open {
+			opacity: 0;
+		}
+
+		.wp-block-cloudcatch-light-modal-block__wrapper.is-open .wp-block-cloudcatch-light-modal-block {
+			opacity: 0;
+			transform: translateY(40px) scale(0.9);
+		}
 	}
 
 == Screenshots ==
