@@ -1,8 +1,8 @@
 === Light Modal Block ===
 Contributors:      cloudcatch, dkjensen
 Tags:              block, modal, popup, lightbox, gutenberg, full-site-editing
-Tested up to:      7.0
-Stable tag:        1.9.2
+Tested up to:      7.1
+Stable tag:        1.10.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP:      7.0
@@ -28,7 +28,7 @@ A simple yet robust solution for creating modals within the WordPress block edit
 * API enabled
 * Only 2kb gzipped
 * Accessibility enabled
-* Use modals within the query loop block
+* Use modals within the query loop block and the WooCommerce Product Template block
 
 == Attribution ==
 
@@ -36,10 +36,14 @@ The Light Modal block uses a modified version of the [Micromodal](https://github
 
 == Changelog ==
 
-= 1.9.2 =
+= 1.10.0 =
+* Enhancement: Modals inside the WooCommerce Product Template open the product that was clicked, instead of always showing the first product
+* Fix: Close button reliably closes the modal when clicking the icon inside the button
+
+= 1.10.0 =
 * Fix: Prevent page scrolling when clicking an anchor which triggers opening a modal
 
-= 1.9.2 =
+= 1.9.1 =
 * Fix: Modal not opening on some sites due to the script loading after the page was already ready
 
 = 1.9.0 =

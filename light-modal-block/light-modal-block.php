@@ -4,7 +4,7 @@
  * Description:       Lightweight, customizable modal block for the WordPress block editor
  * Requires at least: 6.6
  * Requires PHP:      7.0
- * Version:           1.9.2
+ * Version:           1.10.0
  * Author:            CloudCatch LLC
  * Author URI:        https://cloudcatch.io
  * License:           GPL-2.0-or-later
@@ -25,7 +25,11 @@ function cloudcatch_light_modal_block_block_init() {
 add_action( 'init', 'cloudcatch_light_modal_block_block_init' );
 
 /**
- * Modifies the post template block, filtering the modal ID to include the current query ID and post ID.
+ * Gives each copy of a modal inside a repeated template its own id.
+ *
+ * Query Loop items use the `wp-block-post` class. WooCommerce Product Template
+ * items use `wc-block-product` and do not include `wp-block-post`, so the same
+ * saved modal id would otherwise point every product at the first modal.
  *
  * @param string   $block_content The block content.
  * @param array    $block The block.
@@ -41,12 +45,12 @@ function cloudcatch_light_modal_block_post_template( $block_content, $block, $in
 
 	while ( $tags->next_tag() ) {
 
-		if ( $tags->has_class( 'wp-block-post' ) ) {
+		if ( $tags->has_class( 'wp-block-post' ) || $tags->has_class( 'wc-block-product' ) ) {
 			$matches = null;
 
 			$post_class = $tags->get_attribute( 'class' );
 
-			preg_match( '/post-(\d+)/', $post_class, $matches );
+			preg_match( '/(?:^|\s)post-(\d+)(?:\s|$)/', $post_class, $matches );
 
 			if ( isset( $matches[1] ) ) {
 				$current_post_id = (int) $matches[1];
@@ -77,6 +81,7 @@ function cloudcatch_light_modal_block_post_template( $block_content, $block, $in
 	return $block_content;
 }
 add_filter( 'render_block_core/post-template', 'cloudcatch_light_modal_block_post_template', 10, 3 );
+add_filter( 'render_block_woocommerce/product-template', 'cloudcatch_light_modal_block_post_template', 10, 3 );
 
 /**
  * Accessibility improvements for buttons that trigger modals by changing
